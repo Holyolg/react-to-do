@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Form } from "./Form";
+import { Task } from "./Task";
+
+const getLS = () => {
+  let taskLS = localStorage.getItem("tasks");
+  if (taskLS) {
+    return (taskLS = JSON.parse(localStorage.getItem("tasks")));
+  } else {
+    return [];
+  }
+};
 
 function App() {
+  const [tasks, setTasks] = React.useState(getLS());
+
+  //UseEffect для отслеживания обновления
+  React.useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="wrapper">
+      <div className="content">
+        <h1>To Do</h1>
+        <header>
+          <Form setTasks={setTasks} tasks={tasks} />
+        </header>
+        <Task tasks={tasks} setTasks={setTasks} />
+      </div>
     </div>
   );
 }
-
 export default App;

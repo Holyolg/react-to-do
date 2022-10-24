@@ -12,6 +12,9 @@ header {
   align-items: center;
   margin-bottom: 24px;
 }
+.content {
+  padding: 20px;
+}
 .add-task-input {
   width: 300px;
   padding: 8px;
@@ -60,7 +63,6 @@ header {
   font-size: 18px;
 }
 .add {
-  position: absolute;
   color: #474747;
   padding: 9px;
   box-shadow: 1px 2px 5px #4f4f4f;
@@ -70,6 +72,7 @@ header {
   font-size: 20px;
   cursor: pointer;
 }
+
 .add:hover {
   background: #949494;
 }
@@ -81,5 +84,30 @@ header {
   cursor: pointer;
 }
 .text {
-  width: 100%;
+  max-width: 100%;
+}
+@media (max-width: 624px) {
+  .add {
+    position: flex;
+    padding: 15px;
+  }
+  .add-input-wrapper {
+    display: flex;
+    flex-direction: column;
+    font-size: 22px;
+  }
+  .add-task-input {
+    margin-bottom: 15px;
+    margin-right: 0;
+    padding: 15px 10px;
+    font-size: 22px;
+  }
+  .task {
+    width: 320px;
+    max-width: 100%;
+    padding: 10px;
+    font-size: 24px;
+  }
+  .tasks {
+  }
 }

@@ -22,7 +22,7 @@ function App() {
   return (
     <div className="wrapper">
       <div className="content">
-        <h1>To Do</h1>
+        <h1>React ToDo</h1>
         <header>
           <Form setTasks={setTasks} tasks={tasks} />
         </header>

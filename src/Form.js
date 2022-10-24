@@ -24,7 +24,7 @@ export const Form = ({ tasks, setTasks }) => {
   }
 
   return (
-    <div>
+    <div className="add-input-wrapper">
       <input
         className="add-task-input"
         value={userValue}

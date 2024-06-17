@@ -1,6 +1,13 @@
 import React from "react";
-import { Form } from "./Form.tsx";
-import { Task } from "./Task.tsx";
+import { CircularProgressbarComponent } from "./components/CircularProgressbarComponent.tsx";
+import { Form } from "./components/Form.tsx";
+import { Task } from "./components/Task.tsx";
+
+interface ITask {
+	id: number;
+	title: string;
+	status: boolean;
+}
 
 const getLS = () => {
 	let taskLS = localStorage.getItem("tasks");
@@ -19,14 +26,25 @@ function App() {
 		localStorage.setItem("tasks", JSON.stringify(tasks));
 	}, [tasks]);
 
+	const doneTasks = tasks.filter((tasks: ITask) => tasks.status === false);
+
 	return (
 		<div className="wrapper">
 			<div className="content">
 				<h1>Список дел на React ✍️</h1>
-
-				<header>
+				<div className="wrapper__info">
+					{/* <div className="info">
+						<p>Всего: {tasks.length}</p>
+						<p>Выполнено: {doneTasks.length}</p>
+					</div> */}
+					<div className="wrapper__progressbar">
+						<CircularProgressbarComponent tasks={tasks} doneTasks={doneTasks} />
+					</div>
+				</div>
+				<main>
 					<Form setTasks={setTasks} tasks={tasks} />
-				</header>
+				</main>
+
 				<Task tasks={tasks} setTasks={setTasks} />
 				<div className="guide">
 					<h2>

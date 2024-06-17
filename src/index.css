@@ -1,3 +1,15 @@
+* {
+	padding: 0px;
+	margin: 0px;
+	border: none;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
 body {
 	margin: 0;
 	font-family: Nunito;
@@ -14,25 +26,28 @@ h2 {
 	font-weight: 600;
 }
 
-header {
+p {
+	font-weight: 500;
+	color: #4b4b4b;
+}
+
+main {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	margin-bottom: 24px;
 }
 .content {
-	padding: 20px;
+	padding: 40px 20px 40px 20px;
 }
 
 .guide {
-	max-width: 450px;
+	max-width: 500px;
 	margin: 0 auto;
 }
 .add-task-input {
-	width: 300px;
-	padding: 8px;
-
-	margin-right: 20px;
+	padding: 10px;
+	width: 240px;
 	border-radius: 12px;
 	transition: all 0.15s ease;
 	font-size: 21px;
@@ -40,16 +55,20 @@ header {
 	border: 1px solid #bdbdbd;
 }
 .add-task-input:focus {
-	border: 2px solid #bdbdbd;
 	-webkit-box-shadow: 3px 10px 20px 0px rgba(0, 0, 0, 0.1);
 	-moz-box-shadow: 3px 10px 20px 0px rgba(0, 0, 0, 0.1);
 	box-shadow: 3px 10px 20px 0px rgba(0, 0, 0, 0.1);
 	outline: none;
-	width: 370px;
+	width: 300px;
 }
 .wrapper-tasks {
 	display: flex;
 	justify-content: center;
+}
+
+.wrapper__text {
+	margin: 0 auto;
+	max-width: 450px;
 }
 
 .done {
@@ -86,13 +105,14 @@ header {
 }
 
 .add {
+	width: 150px;
 	color: #474747;
-	padding: 9px;
+	padding: 10px;
 	border-radius: 12px;
-	border: 0px;
 	background: linear-gradient(to top, #e2e2e2, #dcdcdc);
 	font-size: 20px;
 	cursor: pointer;
+	text-align: center;
 }
 
 .add:hover {
@@ -116,26 +136,58 @@ header {
 	width: 100%;
 }
 
+.wrapper__info {
+	display: flex;
+	max-width: 500px;
+	justify-content: space-between;
+	margin: 20px auto 0 auto;
+	margin-bottom: 30px;
+	border-radius: 12px;
+	padding: 5px;
+	background-color: white;
+}
+
+.wrapper__progressbar {
+	width: 200px;
+	height: 200px;
+	margin: 0 auto;
+}
+
+.add-input-wrapper {
+	display: flex;
+	width: 500px;
+	justify-items: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
 @media (max-width: 624px) {
 	.add {
 		position: flex;
-		padding: 15px;
+		width: 100%;
 	}
 	.add-input-wrapper {
-		display: flex;
 		flex-direction: column;
 		font-size: 22px;
+		padding: 5px;
 	}
 	.add-task-input {
 		margin-bottom: 15px;
 		margin-right: 0;
-		padding: 15px 10px;
 		font-size: 22px;
+		width: 100%;
 	}
 	.task {
 		width: 320px;
 		max-width: 100%;
 		padding: 10px;
 		font-size: 24px;
+	}
+	.add-task-input:focus {
+		-webkit-box-shadow: 3px 10px 20px 0px rgba(0, 0, 0, 0.1);
+		-moz-box-shadow: 3px 10px 20px 0px rgba(0, 0, 0, 0.1);
+		box-shadow: 3px 10px 20px 0px rgba(0, 0, 0, 0.1);
+		outline: none;
+		width: 110%;
 	}
 }

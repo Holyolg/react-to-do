@@ -2,6 +2,9 @@ import React from "react";
 import { CircularProgressbarComponent } from "./components/CircularProgressbarComponent.tsx";
 import { Form } from "./components/Form.tsx";
 import { Task } from "./components/Task.tsx";
+import { useTheme } from "./hooks/use-theme.tsx";
+
+import "./App.css";
 
 interface ITask {
 	id: number;
@@ -20,7 +23,12 @@ const getLS = () => {
 
 function App() {
 	const [tasks, setTasks] = React.useState(getLS());
-	console.log(tasks);
+	const { theme, setTheme } = useTheme();
+
+	const handleThemeClick = () => {
+		setTheme(theme == "light" ? "dark" : "light");
+	};
+
 	//UseEffect для отслеживания обновления
 	React.useEffect(() => {
 		localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -31,6 +39,11 @@ function App() {
 	return (
 		<div className="wrapper">
 			<div className="content">
+				<div className="theme-toggle__groups">
+					<button className="theme-toggle" onClick={handleThemeClick}>
+						{theme == "light" ? "☀️" : "🌔"}
+					</button>
+				</div>
 				<h1>Список дел на React ✍️</h1>
 				<div className="wrapper__info">
 					{/* <div className="info">

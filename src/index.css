@@ -64,6 +64,8 @@ main {
 .wrapper-tasks {
 	display: flex;
 	justify-content: center;
+	max-width: 500px;
+	margin: 0 auto;
 }
 
 .wrapper__text {
@@ -169,7 +171,6 @@ main {
 	.add-input-wrapper {
 		flex-direction: column;
 		font-size: 22px;
-		padding: 5px;
 	}
 	.add-task-input {
 		margin-bottom: 15px;
@@ -177,9 +178,12 @@ main {
 		font-size: 22px;
 		width: 100%;
 	}
+	.tasks {
+		width: 100%;
+	}
+
 	.task {
-		width: 320px;
-		max-width: 100%;
+		width: 100%;
 		padding: 10px;
 		font-size: 24px;
 	}
@@ -188,6 +192,6 @@ main {
 		-moz-box-shadow: 3px 10px 20px 0px rgba(0, 0, 0, 0.1);
 		box-shadow: 3px 10px 20px 0px rgba(0, 0, 0, 0.1);
 		outline: none;
-		width: 110%;
+		width: 108%;
 	}
 }

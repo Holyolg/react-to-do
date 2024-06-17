@@ -40,7 +40,7 @@ export const Task = ({
 						</div>
 
 						<button onClick={() => remove(task.id)} className="btn remove">
-							X
+							❌
 						</button>
 					</div>
 				))}

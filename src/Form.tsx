@@ -34,12 +34,12 @@ export const Form = ({
 			<input
 				className="add-task-input"
 				value={userValue}
-				placeholder="write..."
+				placeholder="напиши что-нибудь..."
 				onChange={e => setUserValue(e.target.value)}
 				onKeyDown={handleChange}
 			/>
 			<button className="btn add" onClick={() => add(userValue)}>
-				Добавить
+				Добавить ✨
 			</button>
 		</div>
 	);

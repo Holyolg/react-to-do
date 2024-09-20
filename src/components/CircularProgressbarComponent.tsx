@@ -3,19 +3,15 @@ import {
 	buildStyles,
 } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-
-interface ITask {
-	id: number;
-	title: string;
-	status: boolean;
-}
+import { ITask } from "./Task";
+import React from "react";
 
 export function CircularProgressbarComponent({
 	tasks,
 	doneTasks,
 }: {
-	tasks: [];
-	doneTasks: [];
+	tasks: ITask[];
+	doneTasks: ITask[];
 }) {
 	return (
 		<CircularProgressbarWithChildren
@@ -25,8 +21,7 @@ export function CircularProgressbarComponent({
 				textColor: "#bdbdbd",
 				pathColor: "#9dedce",
 				trailColor: "#e0e0e0",
-			})}
-		>
+			})}>
 			<p style={{ fontSize: 16, fontWeight: 500, color: "#bdbdbd" }}>
 				{doneTasks.length} из {tasks.length}
 			</p>

@@ -1,36 +1,22 @@
-import React from "react";
 import { CircularProgressbarComponent } from "./components/CircularProgressbarComponent.tsx";
 import { Form } from "./components/Form.tsx";
-import { Task } from "./components/Task.tsx";
+import { ITask, Task } from "./components/Task.tsx";
 import { useTheme } from "./hooks/use-theme.tsx";
+import { getLocalStorage } from "./lib/get-local-storage.ts";
+import { useEffect, useState } from "react";
+import React from "react";
 
 import "./App.css";
 
-interface ITask {
-	id: number;
-	title: string;
-	status: boolean;
-}
-
-const getLS = () => {
-	let taskLS = localStorage.getItem("tasks");
-	if (taskLS !== null) {
-		return (taskLS = JSON.parse(localStorage.getItem("tasks") ?? "{}"));
-	} else {
-		return [];
-	}
-};
-
-function App() {
-	const [tasks, setTasks] = React.useState(getLS());
+export default function App() {
+	const [tasks, setTasks] = useState(getLocalStorage());
 	const { theme, setTheme } = useTheme();
 
 	const handleThemeClick = () => {
-		setTheme(theme == "light" ? "dark" : "light");
+		setTheme(theme === "light" ? "dark" : "light");
 	};
 
-	//UseEffect для отслеживания обновления
-	React.useEffect(() => {
+	useEffect(() => {
 		localStorage.setItem("tasks", JSON.stringify(tasks));
 	}, [tasks]);
 
@@ -41,7 +27,7 @@ function App() {
 			<div className="content">
 				<div className="theme-toggle__groups">
 					<button className="theme-toggle" onClick={handleThemeClick}>
-						{theme == "light" ? "☀️" : "🌔"}
+						{theme === "light" ? "☀️" : "🌔"}
 					</button>
 				</div>
 				<h1>Список дел на React ✍️</h1>
@@ -72,4 +58,3 @@ function App() {
 		</div>
 	);
 }
-export default App;

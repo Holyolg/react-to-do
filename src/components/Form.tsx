@@ -1,12 +1,13 @@
 import React from "react";
 import { v4 as uuidv4 } from "uuid";
+import { ITask } from "./Task";
 
 export const Form = ({
 	tasks,
 	setTasks,
 }: {
-	tasks: [];
-	setTasks: Function;
+	tasks: ITask[];
+	setTasks: React.Dispatch<React.SetStateAction<ITask[]>>;
 }) => {
 	const [userValue, setUserValue] = React.useState("");
 
@@ -35,7 +36,7 @@ export const Form = ({
 				className="add-task-input"
 				value={userValue}
 				placeholder="напиши что-нибудь..."
-				onChange={e => setUserValue(e.target.value)}
+				onChange={(e) => setUserValue(e.target.value)}
 				onKeyDown={handleChange}
 			/>
 			<button className="btn add" onClick={() => add(userValue)}>

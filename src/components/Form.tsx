@@ -1,14 +1,13 @@
-import React from "react";
+import React, { FC } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { ITask } from "./Task";
+import { MyTask } from "./Task";
 
-export const Form = ({
-	tasks,
-	setTasks,
-}: {
-	tasks: ITask[];
-	setTasks: React.Dispatch<React.SetStateAction<ITask[]>>;
-}) => {
+interface Props {
+	tasks: MyTask[];
+	setTasks: React.Dispatch<React.SetStateAction<MyTask[]>>;
+}
+
+export const Form: FC<Props> = ({ tasks, setTasks }) => {
 	const [userValue, setUserValue] = React.useState("");
 
 	function add(data: string) {
@@ -18,7 +17,7 @@ export const Form = ({
 				{
 					id: uuidv4(),
 					title: userValue,
-					status: true,
+					status: "active",
 				},
 			]);
 			setUserValue("");

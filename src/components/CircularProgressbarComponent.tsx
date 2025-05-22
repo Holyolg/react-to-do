@@ -1,14 +1,14 @@
 import React, { FC } from "react";
 import { CircularProgressbarWithChildren, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import { MyTask } from "./Tasks.tsx";
+import { Task } from "../types";
 
 interface Props {
-  tasks: MyTask[];
+  tasks: Task[];
 }
 
 export const CircularProgressbarComponent: FC<Props> = ({ tasks }) => {
-  const doneTasks = tasks.filter((tasks: MyTask) => tasks.status === "completed");
+  const doneTasks = tasks.filter((task: Task) => task.status === "completed");
 
   return (
     <div className="wrapper__progressbar">

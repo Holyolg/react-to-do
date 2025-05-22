@@ -1,6 +1,6 @@
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import React, { FC } from "react";
-import { useTheme } from "../hooks/use-theme.ts";
+import { useTheme } from "../hooks/useTheme.ts";
 
 export const ThemeToggle: FC = () => {
   const [parent] = useAutoAnimate();

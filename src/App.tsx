@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   CircularProgressbarComponent,
   Filters,
@@ -7,32 +7,15 @@ import {
   Tasks,
   ThemeToggle,
 } from "./components/index.ts";
-import { MyTask } from "./components/Tasks.tsx";
-import { getLocalStorage } from "./lib/get-local-storage.ts";
-
+import { useTasks } from "./hooks/useTasks.ts";
 import "./App.css";
 
 export default function App() {
-  const [tasks, setTasks] = useState(getLocalStorage());
+  const { tasks, setTasks, filterTasks } = useTasks();
   const [filter, setFilter] = useState("all");
   const [search, setSearch] = useState("");
 
-  const filteredTasks = tasks.filter((task: MyTask) => {
-    if (filter === "completed") return task.status === "completed";
-    if (filter === "active") return task.status === "active";
-
-    if (search && !task.title.toLowerCase().includes(search.toLowerCase())) {
-      if (filter === "completed") return task.status === "completed";
-      if (filter === "active") return task.status === "active";
-      return false;
-    }
-
-    return true;
-  });
-
-  useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  }, [tasks]);
+  const filteredTasks = filterTasks(filter, search);
 
   return (
     <main className="wrapper">

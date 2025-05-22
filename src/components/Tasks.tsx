@@ -1,50 +1,41 @@
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import React, { FC } from "react";
-import { v4 as uuidv4 } from "uuid";
-
-export interface MyTask {
-  id: number;
-  title: string;
-  status: "completed" | "active";
-}
+import { Task } from "../types";
 
 interface Props {
-  tasks: MyTask[];
-  setTasks: React.Dispatch<React.SetStateAction<MyTask[]>>;
+  tasks: Task[];
+  setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
 }
 
 export const Tasks: FC<Props> = ({ tasks, setTasks }) => {
   const [parent] = useAutoAnimate();
 
-  function remove(id: number) {
-    let newTasks = [...tasks].filter((item: MyTask) => item.id !== id);
-    setTasks(newTasks);
-  }
-  function status(id: number) {
-    let newTasks = [...tasks].filter((item: MyTask) => {
-      if (item.id === id) {
-        item.status =
-          item.status === ("completed" as MyTask["status"])
-            ? "active"
-            : ("completed" as MyTask["status"]);
-      }
-      return item;
-    });
-    setTasks(newTasks);
-  }
+  const removeTask = (id: string): void => {
+    setTasks(prevTasks => prevTasks.filter(task => task.id !== id));
+  };
+
+  const toggleTaskStatus = (id: string): void => {
+    setTasks(prevTasks =>
+      prevTasks.map(task =>
+        task.id === id
+          ? { ...task, status: task.status === "completed" ? "active" : "completed" }
+          : task
+      )
+    );
+  };
 
   return (
     <div className="wrapper-tasks">
       <div className="tasks" ref={parent}>
-        {tasks.map((task: MyTask) => (
-          <div className="task" key={uuidv4()}>
+        {tasks.map((task: Task) => (
+          <div className="task" key={task.id}>
             <div
               className={task.status === "active" ? "text" : "text done"}
-              onClick={() => status(task.id)}>
+              onClick={() => toggleTaskStatus(task.id)}>
               {task.title}
             </div>
 
-            <button onClick={() => remove(task.id)} className="btn remove">
+            <button onClick={() => removeTask(task.id)} className="btn remove">
               ❌
             </button>
           </div>

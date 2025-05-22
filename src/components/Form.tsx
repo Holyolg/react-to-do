@@ -1,33 +1,32 @@
 import React, { FC } from "react";
-import { v4 as uuidv4 } from "uuid";
-import { MyTask } from "./Tasks";
+import { Task } from "../types";
 
 interface Props {
-  tasks: MyTask[];
-  setTasks: React.Dispatch<React.SetStateAction<MyTask[]>>;
+  tasks: Task[];
+  setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
 }
 
 export const Form: FC<Props> = ({ tasks, setTasks }) => {
   const [userValue, setUserValue] = React.useState("");
 
-  function add(data: string) {
-    if (userValue.length > 0) {
-      setTasks([
-        ...tasks,
+  const addTask = (title: string) => {
+    if (title.trim().length > 0) {
+      setTasks(prevTasks => [
+        ...prevTasks,
         {
-          id: uuidv4(),
-          title: userValue,
+          id: crypto.randomUUID(),
+          title: title.trim(),
           status: "active",
         },
       ]);
       setUserValue("");
     }
-  }
-  function handleChange(e: React.KeyboardEvent<HTMLInputElement>) {
+  };
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
-      add(userValue);
+      addTask(userValue);
     }
-  }
+  };
 
   return (
     <div className="add-input-wrapper">
@@ -36,9 +35,9 @@ export const Form: FC<Props> = ({ tasks, setTasks }) => {
         value={userValue}
         placeholder="напиши что-нибудь..."
         onChange={e => setUserValue(e.target.value)}
-        onKeyDown={handleChange}
+        onKeyDown={handleKeyDown}
       />
-      <button className="btn add" onClick={() => add(userValue)}>
+      <button className="btn add" onClick={() => addTask(userValue)}>
         Добавить ✨
       </button>
     </div>
